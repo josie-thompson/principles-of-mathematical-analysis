@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath, amsthm, amsfonts}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\usepackage{letltxmacro, changepage}
+\LetLtxMacro\oldproof\proof
+\let\endoldproof\endproof
+\renewenvironment{proof}[1][\proofname]
+  {\begin{adjustwidth}{2em}{2em}
+   \oldproof[#1]}
+  {\endoldproof
+   \end{adjustwidth}}
+
+\usepackage{amssymb}
+\renewcommand{\qedsymbol}{\tiny$\blacksquare$}
+
+\usepackage{enumerate}
+
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+\begin{enumerate}[1.]
+\item If $r$ is rational nonzero and $x$ is irrational, then $r + x$ and $rx$
+      are also irrational.
+      \begin{proof}
+      Let $r = \frac{m}{n}$ for some $m, n \in \Z$.
+
+      Suppose for contradiction that $rx$ is rational. Then there are some
+      $a, b \in \Z$ where $rx = x\frac{m}{n} = \frac{a}{b}$. Then we have that
+      $x = \frac{an}{bm} \in \Q$ which contradicts that $x$ is irrational.
+      Therefore $rx$ is irrational.
+
+      Now suppose for contradiction that $r + x$ is rational. Then there are
+      some $a, b \in Z$ where $r + x = \frac{m}{n} + x = \frac{a}{b}$. Then we
+      have $x = \frac{na - bm}{nb} \in Q$ which again contradicts that $x$ is
+      irrational. Therefore $r + x$ is irrational.
+      \end{proof}
+
+\item There is no rational number whose square is 12.
+      \begin{proof}
+      We'll first consider the possibility of a rational number whose square is
+      3. That is $p^2 = \frac{m^2}{n^2} = 3$ for some $m, n \in \Z$. Suppose
+      for contradiction that $n$ is even - so that $n^2$ is also even. Then
+      we'd have that $m^2 = 3n^2 = 6k = 2(3k)$ for some $k\in\Z$. This shows
+      that $m$ is also even. But we know that a rational number can be
+      represented as $\frac{m}{n}$ where $m, n \in \Z$ are not both even. Thus
+      if $n$ is even we know that there can be no such rational $\frac{m}{n}$
+      so that $\frac{m^2}{n^2} = 3$.
+
+      Furthermore we know that $12 = 2^2 \cdot 3$ so that if there were a
+      rational number whose square is 12, we'd have $\frac{m^2}{(2k)^2} = 3$
+      for $n = 2k^2$. This shows that $n$ must be even, therefore we have there
+      can be no such rational $\frac{m^2}{(2k)^2} = 3$ and thus there's no such
+      rational $\frac{m^2}{k^2} = 12$.
+      \end{proof}
+\end{enumerate}
+
+\end{document}
