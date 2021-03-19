@@ -1,0 +1,141 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath, amsthm, amsfonts}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\usepackage{letltxmacro, changepage}
+\LetLtxMacro\oldproof\proof
+\let\endoldproof\endproof
+\renewenvironment{proof}[1][\proofname]
+  {\begin{adjustwidth}{2em}{2em}
+   \oldproof[#1]}
+  {\endoldproof
+   \end{adjustwidth}}
+
+\usepackage{amssymb}
+\renewcommand{\qedsymbol}{\tiny$\blacksquare$}
+
+\usepackage{titlesec}
+\titleformat{\section}
+    {\normalfont\Large\bfseries}{Example \thesection}{1em}{}
+\setcounter{secnumdepth}{2}
+
+\usepackage{csquotes}
+\usepackage{physics}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+
+\begin{document}
+\section{$\sqrt{2} \not\in \Q$}
+\begin{proof}
+The proof from Rudin is essentially as follows: suppose for contradiction that
+$\sqrt{2} \in \Q$ so that for some $m, n \in \Z$ we have $\frac{m^2}{n^2} = 2$.
+We'll show that $m$ and $n$ must always be even. For $m$ it's obvious: if $m$
+is odd, this is in contradiction with $m^2 = 2n^2$ since the square of an odd
+is odd and $2n^2$ is not odd.
+
+We've established that $m$ must be even, so now let's suppose that $n$ is odd.
+So then $n^2$ is odd since the square of an odd is also odd.
+And because $m$ is even, $m^2 = 4k^2$ for some $k\in\Z$. Then $\frac{m^2}{2} =
+2k^2 \in \Z^+$, and is even. However, we also have that $\frac{m^2}{2} = n^2$
+but $n^2$ is odd. Thus we have that $n$ must be even as well.
+
+However, if $\sqrt{2} = \frac{m}{n} \in \Q$, we know that there must be some
+factorization where $m$ and $n$ are not both even. Thus we have that $\sqrt{2}
+\not\in \Q$.
+\end{proof}
+
+There are a few ideas that Rudin assumes the reader is familiar with here: that
+the square of an even number is even, the square of an odd number is odd, and
+that any rational number can be expressed as $\frac{m}{n}$ where $m, n \in \Z$
+are not both even.
+
+The first two are fairly trivial proofs but I'll show them anyway. If $n$ is
+even then $n$ has the form $n = 2k$ so that $n^2 = 4k^2 = 2(2k^2)$ where $2k^2
+\in \Z$ therefore $n^2$ is also even. If $n$ is odd then $n$ has the form $n =
+2k+1$ so that $n^2 = 4k^2 + 4k + 1 = 2(2k^2+2k) + 1$ where $2k^2+2k \in \Z$
+therefore $n^2$ is also odd.
+
+The last one is only a little less trivial, as it requires a recursive argument.
+Suppose $m$ and $n$ are both even numbers such that $m = 2a$ and $n = 2b$ where
+$a, b \in \Z$. Then $\frac{m}{n} = \frac{2a}{2b} = \frac{a}{b}$. Now it may be
+the case that both $a$ and $b$ are also even - however we can easily see that
+we can apply the same argument again until $a$ or $b$ is odd. Thus there must
+be some factorization of a rational number $q = \frac{m}{n}$ such that $m$ and
+$n$ are not both even.
+
+In the proof that $\sqrt{2}$ is not rational, we considered an arbitrary
+factorization $\frac{m}{n}$. That is to say, there is no choice of $m$ and $n$
+where they aren't both even - therefore $\sqrt{2}$ cannot be rational.
+
+\newpage
+\subsection*{The rationals can become arbitrarily close to $\sqrt{2}$}
+\begin{proof}
+After he proves that $\sqrt{2} \not\in \Q$, Rudin shows is that if you split
+the rationals at $\sqrt{2}$ into two sets, then the set with elements less than
+$\sqrt{2}$ have no largest element, and the set with elements greater than
+$\sqrt{2}$ have no smallest element. We can use this to show that the
+rationals can become arbitrarily  close to $\sqrt{2}$, but first we'll go over
+his proof.
+
+Let $A = \{p \in \Q : p^2 < 2\}$ and $B = \{p \in \Q : p^2 > 2\}$. Then our
+goal is to show that $A$ has no largest element and $B$ has no smallest element.
+One way to think about this is to find some rational number whose absolute
+value is smaller than $\abs{2-p^2}$ so that when we add it to $p$ we get a
+number still contained in same set as $p$ but is closer to $\sqrt{2}$ than $p$
+is. Rudin chooses the value
+
+\begin{equation*}
+q = p - \frac{p^2-2}{p+2} = \frac{2p+2}{p+2}
+\end{equation*}
+
+Rudin chooses to express $q$ in the form $p - \frac{p^2-2}{p+2}$ in order to
+accentuate the term $p^2 - 2$. If $p^2-2 < 0$ - or in other words $p \in A$ -
+then $q > p$. Conversely if $p^2-2 > 0$ or $p \in B$, then $q < p$. This
+satisfies the first requirement we're trying to show.
+
+Then Rudin rearranges this equation as
+\begin{equation*}
+q^2-2 = \frac{2(p^2-2)}{(p+2)^2}
+\end{equation*}
+Now the purpose is to accentuate two terms: $p^2-2$ as before but also $q^2-2$.
+Namely we have that if $p\in A$ then $p^2-2 < 0$ which also implies that
+$q^2-2 <0$ so $q\in A$ as well. Furthermore if $p\in B$ then $p^2-2 > 0$ which
+similarly implies $q^2-2 > 0$ so then $q\in B$.
+
+Now finally, if we consider an arbitrary $\varepsilon > 0$, we have that
+$\sqrt{2} - \varepsilon$ is a part of A, so we know there's some larger element
+of $A$ that's still less than $\sqrt{2}$. Similarly $\sqrt{2} + \varepsilon$ is
+part of $B$, so we can find some smaller element in $B$ that's still larger
+than $\sqrt{2}$.
+
+Thus we have that the rationals can get arbitrarily close to $\sqrt{2}$.
+\end{proof}
+
+Combining the two statements we just proved get's to the heart of Rudin's remark
+for 1.2. That is, the rationals can get arbitrarily close to $\sqrt{2}$, yet
+$\sqrt{2}$ is not a rational number. So in a sense, there are \enquote{holes}
+within the rational numbers.
+
+Note: As user Bill Dubuque mentions in an answer from Mathematics Stack
+Exchange \footnote{https://math.stackexchange.com/a/141941/256903}, Rudin's
+choice of $q$ comes from the secant method for apprixmating the zeros of a
+function, defined by the recurrence relation
+\begin{equation*}
+x_{n+1} = \frac{x_{n-1}f(x_n)-x_nf(x_{n-1})}{f(x_n)-f(x_{n-1})}
+\end{equation*}
+Since we want to approximate the square root of 2, we choose $f(x) = x^2-2$
+since this is 0 when $x = \sqrt{2}$. If we say $q = x_{n+1}, p = x_n$ and
+somwhat arbitrarily choose our starting point $x_{n-1} = 2$, we arrive at
+Rudin's choice of $q$.
+\begin{align*}
+q &= \frac{2(p^2-2) - p(2^2-2)}{(p^2-2)-(2^2-2)}
+   = \frac{-2p^2 - 2p - 4}{p^2-4}\\
+  &= \frac{(p-2)(2p+2)}{(p-2)(p+2)}
+   = \frac{2p+2}{p+2}
+\end{align*}
+
+\end{document}
