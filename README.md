@@ -1,1 +1,1 @@
-The files on here are my own worked solutions to problems from Walter Rudin's Principles of Mathematical Analysis. I don't claim that any of my solutions are correct.
+The files on here are my own worked solutions to problems from Walter Rudin's Principles of Mathematical Analysis. I don't claim that any of my solutions are correct. I also include additional commentary to certain examples from the book that I found difficult to understand.
