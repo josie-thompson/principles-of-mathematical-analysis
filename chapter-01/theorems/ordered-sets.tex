@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath, amsfonts}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\usepackage{amsthm}
+\newtheorem*{theorem*}{Theorem}
+
+\usepackage{letltxmacro, changepage}
+\LetLtxMacro\oldproof\proof
+\let\endoldproof\endproof
+\renewenvironment{proof}[1][\proofname]
+  {\begin{adjustwidth}{2em}{2em}
+   \oldproof[#1]}
+  {\endoldproof
+   \end{adjustwidth}}
+
+\usepackage{amssymb}
+\renewcommand{\qedsymbol}{\tiny$\blacksquare$}
+
+\usepackage{titlesec}
+\titleformat{\section}
+    {\normalfont\Large\bfseries}{Example \thesection}{1em}{}
+\setcounter{secnumdepth}{2}
+
+\usepackage{csquotes}
+\usepackage{physics}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+
+\begin{document}
+\begin{theorem*}A set $S$ with the least-upper-bound property also has the
+                greatest-lower-bound property
+\end{theorem*}
+\begin{proof}
+Let $B \subset S$ be nonempty and bounded below, and let $L$ be the lower
+bounds of $B$. Since $S$ and $B$ are nonempty $L$ must also be nonempty,
+otherwise $B$ would not be bounded below. Since $S$ has the least-upper-bound
+property we know that $\alpha = \sup L \in S$. Then $\alpha$ is an upper bound
+of $L$ and if $\gamma < \alpha$ then $\gamma$ is not an upper bound of $L$.
+
+Then we have if $\gamma \in L$ then $\gamma \leq \alpha$. And if $\gamma
+\not\in L$ then $\gamma$ is by definition not a lower bound of $B$. Then we have
+$\gamma \leq \alpha$ or $\gamma$ is not a lower bound of $B$, thus if $\gamma >
+\alpha$ then $\gamma$ is not a lower bound of $B$.
+
+Furthermore, by contrapositive, if $\gamma$ is an upper bound of $L$ then
+$\gamma \geq \alpha$.  Then since all elements of $B$ are, by definition of
+$L$, upper bounds of $L$, we have that $\alpha \leq \beta$ for all $\beta \in
+B$. That is, $\alpha$ is a lower bound of $B$.
+
+Put together we have $\alpha = \sup L = \inf B \in S$. That is, for a nonempty
+$B\subset S$ bounded below, then $\inf B \in S$. Or in other words, $S$
+satisfies the greatest-lower-bound property.
+\end{proof}
+\end{document}
